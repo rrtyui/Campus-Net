@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
+const { Client } = require('pg');
 
-app.listen(5000, () => {
-    console.log('Server listeing on port 5000..')
+const client = new Client ({
+    host: 'localhost',
+    database:
 })

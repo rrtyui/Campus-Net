@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('postgres://user:password@localhost:5432/database');
 const express = require('express');
 const app = express();
 const port = 3000;
+const sequelize = new Sequelize('postgres://user:password@localhost:5432/database');
 
 const User = sequelize.define('user', {
   name: {

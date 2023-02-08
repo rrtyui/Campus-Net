@@ -1,11 +1,13 @@
 const Sequelize = require('sequelize');
-const {db} = require('./config');
+const { db } = require('./config');
 
 
 async function checkConnection() {
   try {
-    console.log(db.database, db.user, db.password)
     // Connect to the database
+    console.log(db.database);
+    console.log(db.user);
+    console.log(db.password);
     const sequelize = new Sequelize(
         db.database,
         db.user,

@@ -1,3 +1,4 @@
+// simple databse connection test
 const mysql = require('mysql')
 
 const connection = mysql.createConnection({

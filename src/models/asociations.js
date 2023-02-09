@@ -9,4 +9,10 @@ const Inscription = require('./inscriptions');
 
 // defining one-to-many relationship between group
 
-Student.hasMany()
+Student.hasMany(models.Note, {
+    foreignKey: 'student_id',
+});
+
+Note.belongsTo(models.Student, {
+    foreignKey: 'student_id',
+});

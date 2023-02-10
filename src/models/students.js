@@ -1,4 +1,4 @@
-const { Sequelize, DataTypes, Model } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const { sequelize } = require('../db');  // database variables
 
 const Student = sequelize.define(
@@ -10,9 +10,9 @@ const Student = sequelize.define(
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
       },
-      name: {
-      type: DataTypes.STRING(100),
-      allowNull: false,
+      first_name: {
+        type: DataTypes.STRING(100),
+        allowNull: false,
       },
       last_name: {
         type: DataTypes.STRING(100),
@@ -27,5 +27,7 @@ const Student = sequelize.define(
       }
     }
 );
+
+console.log(process.env);
 
 module.exports = Student;

@@ -1,21 +1,21 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const { db } = require('./config'); // database connection variables
 const { Sequelize } = require('sequelize');
 
 const dbconnect = mysql.createPool ({
-    user: db.user, // process.env contains variables for the databaseconnection
-    password: db.password,
+    user: process.env.DB_USER, // process.env contains variables for the databaseconnection
+    password: process.env.DB_PASSWORD,
     host: db.host,
-    database: db.database,
-    port: db.port
+    database: process.env.DB_DATABASE,
+    port: process.env.DB_PORT
 })
 
 const sequelize = new Sequelize(
-    db.database,
-    db.user,
-    db.password,
+    process.env.DB_DATABASE,
+    process.env.DB_USER,
+    process.env.DB_PASSWORD,
     {
-        host: db.host,
+        host: process.env.DB_HOST,
         dialect: 'mysql',
         pool: {
             max: 5,

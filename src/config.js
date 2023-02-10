@@ -1,8 +1,7 @@
-const { config } = require('dotenv');
-config(); // config() method is called to load the environment variables from the .env file
+require('dotenv').config(); // config() method is called to load the environment variables from the .env file
 
 module.exports = {
-  db:{
+  db: {
     user: process.env.DB_USER, // process.env contains variables for the database connection
     password: process.env.DB_PASSWORD,
     host: process.env.DB_HOST,
@@ -10,4 +9,3 @@ module.exports = {
     port: process.env.DB_PORT,
   }
 }
-

@@ -10,7 +10,7 @@ const Professor = sequelize.define(
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
       },
-      name: {
+      first_name: {
         type: DataTypes.STRING(100),
         allowNull: false,
       },

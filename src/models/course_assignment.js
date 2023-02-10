@@ -1,20 +1,19 @@
 const { Sequelize, Dataypes, Models } = require('sequelize');
 const { sequelize } = require('../pg-db')
 
-const Resource = sequelize.define(
-    'Resource',
+const CourseAssigment = sequelize.define(
+    'CourseAssigment',
     {
         // Model attributes are defined here
-        resource_id: {
+        course_assigm_id: {
             type: Sequelize.UUID,
             defaultValue: Sequelize.UUIDV4,
             primaryKey: true,
-        },
-        path: {
-            type: Dataypes.TEXT,
-            allowNull: false,
         }
+    }, {
+        // Model Options
+        freezeTableName: true // Keep the model's name same as table
     }
 );
 
-module.exports = Resource;
+module.exports = CourseAssigment;

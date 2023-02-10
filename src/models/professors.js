@@ -1,31 +1,31 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
 const { sequelize } = require('../pg-db');
 
-const Teacher = sequelize.define(
-    'Teacher',
+const Professor = sequelize.define(
+    'Professor',
     {
       // Model attributes are defined here
-      teacher_id: {
+      Professor_id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
       },
-      teacher_name: {
-      type: DataTypes.STRING(50),
+      Professor_name: {
+      type: DataTypes.STRING(100),
       allowNull: false,
       },
-      teacher_last_name: {
-        type: DataTypes.STRING(50),
+      Professor_last_name: {
+        type: DataTypes.STRING(100),
         allowNull: false,
       },
-      teacher_email: {
-        type: DataTypes.STRING(256),
+      Professor_email: {
+        type: DataTypes.STRING(100),
         allowNull: false,
       },
-      teacher_password: {
-        type: DataTypes.STRING(256),
+      Professor_password: {
+        type: DataTypes.STRING(100),
       }
     }
 );
 
-module.exports = Teacher;
+module.exports = Professor;

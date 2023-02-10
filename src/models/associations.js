@@ -1,11 +1,10 @@
 const Student = require('./students');
-const Teacher = require('./teachers');
-const Asistance = require('./asistances');
-const Group = require('./group');
-const Note = require('./notes');
+const Professor = require('./professors');
+const Attendance = require('./attendance');
+const Course = require('./courses');
+const Grade = require('./grades');
 const Resource = require('./resources');
-const Sp_resource = require('./specific_resource');
-const Inscription = require('./inscriptions');
+const Course_Assigment = require('./course_assignment');
 
 // defining one-to-many relationship between group
 

@@ -1,19 +1,20 @@
 const { Sequelize, Dataypes, Models } = require('sequelize');
 const { sequelize } = require('../pg-db')
 
-const Sp_Resource = sequelize.define(
-    'Sp_Resource',
+const Grade = sequelize.define(
+    'Grade',
     {
-        sp_resource_id: {
+        // Model attributes are defined here
+        grade_id: {
             type: Sequelize.UUID,
             defaultValue: Sequelize.UUIDV4,
             primaryKey: true,
         },
-        resource_name: {
-          type: Dataypes.STRING(256),
-          allowNull: false,
+        grade: {
+            type: Dataypes.FLOAT,
+            allowNull: false,
         }
     }
 );
 
-module.exports = Sp_Resource;
+module.exports = Grade;

@@ -1,20 +1,20 @@
 const { Sequelize, Dataypes, Models } = require('sequelize');
 const { sequelize } = require('../pg-db')
 
-const Note = sequelize.define(
-    'Note',
+const Attendance = sequelize.define(
+    'Attendance',
     {
-        note_id: {
+        // Model attributes are defined here
+        Attendance_id: {
             type: Sequelize.UUID,
             defaultValue: Sequelize.UUIDV4,
             primaryKey: true,
         },
-        note: {
-            type: Dataypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
+        Attendance: {
+            type: Dataypes.TINYINT,
+            allowNull: false,
         }
     }
 );
 
-module.exports = Note;
+module.exports = Attendance;

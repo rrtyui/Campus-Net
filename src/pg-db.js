@@ -1,4 +1,4 @@
-const { Pool } = require('pg');
+// const { Pool } = require('pg');
 const { db } = require('./config');
 const { Sequelize } = require('sequelize');
 

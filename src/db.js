@@ -2,7 +2,7 @@ const mysql = require('mysql');
 const { db } = require('./config'); // database connection variables
 const { Sequelize } = require('sequelize');
 
-const pool = mysql.createPool ({
+const dbconnect = mysql.createPool ({
     user: db.user, // process.env contains variables for the databaseconnection
     password: db.password,
     host: db.host,
@@ -26,4 +26,4 @@ const sequelize = new Sequelize(
     }
 );
 
-module.exports = { pool: pool, sequelize: sequelize };
+module.exports = { dbconnect: dbconnect, sequelize: sequelize };

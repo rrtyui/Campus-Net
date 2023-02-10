@@ -5,24 +5,24 @@ const Student = sequelize.define(
     'Student',
     {
       // Model attributes are defined here
-      student_id: {
+      id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
       },
-      student_name: {
+      name: {
       type: DataTypes.STRING(100),
       allowNull: false,
       },
-      student_last_name: {
+      last_name: {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
-      student_email: {
+      email: {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
-      student_password: {
+      password: {
         type: DataTypes.STRING(100),
       }
     }

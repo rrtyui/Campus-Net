@@ -5,7 +5,7 @@ const Grade = sequelize.define(
     'Grade',
     {
         // Model attributes are defined here
-        grade_id: {
+        id: {
             type: Sequelize.UUID,
             defaultValue: Sequelize.UUIDV4,
             primaryKey: true,

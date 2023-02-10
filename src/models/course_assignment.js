@@ -5,7 +5,7 @@ const CourseAssigment = sequelize.define(
     'CourseAssigment',
     {
         // Model attributes are defined here
-        course_assigm_id: {
+        id: {
             type: Sequelize.UUID,
             defaultValue: Sequelize.UUIDV4,
             primaryKey: true,

@@ -5,7 +5,7 @@ const Resource = sequelize.define(
     'Resource',
     {
         // Model attributes are defined here
-        resource_id: {
+        id: {
             type: Sequelize.UUID,
             defaultValue: Sequelize.UUIDV4,
             primaryKey: true,

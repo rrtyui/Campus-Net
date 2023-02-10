@@ -5,7 +5,7 @@ const Attendance = sequelize.define(
     'Attendance',
     {
         // Model attributes are defined here
-        Attendance_id: {
+        id: {
             type: Sequelize.UUID,
             defaultValue: Sequelize.UUIDV4,
             primaryKey: true,

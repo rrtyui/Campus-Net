@@ -5,24 +5,24 @@ const Professor = sequelize.define(
     'Professor',
     {
       // Model attributes are defined here
-      Professor_id: {
+      id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
       },
-      Professor_name: {
-      type: DataTypes.STRING(100),
-      allowNull: false,
-      },
-      Professor_last_name: {
+      name: {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
-      Professor_email: {
+      last_name: {
         type: DataTypes.STRING(100),
         allowNull: false,
       },
-      Professor_password: {
+      email: {
+        type: DataTypes.STRING(100),
+        allowNull: false,
+      },
+      password: {
         type: DataTypes.STRING(100),
       }
     }

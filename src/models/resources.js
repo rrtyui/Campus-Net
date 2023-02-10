@@ -1,5 +1,5 @@
 const { Sequelize, Dataypes, Models } = require('sequelize');
-const { sequelize } = require('../pg-db')
+const { sequelize } = require('../db');
 
 const Resource = sequelize.define(
     'Resource',

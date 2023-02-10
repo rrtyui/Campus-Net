@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
-const { sequelize } = require('../pg-db');
+const { sequelize } = require('../db');
 
 const Professor = sequelize.define(
     'Professor',

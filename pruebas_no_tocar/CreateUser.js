@@ -1,4 +1,4 @@
-const { Client } = require('pg');
+const { Client } = require('pg'); // unused, upgrade to mysql
 
 const client = new Client ({
     user: 'postgres',

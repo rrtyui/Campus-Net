@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
-const { sequelize } = require('../pg-db');
+const { sequelize } = require('../db');  // database variables
 
 const Student = sequelize.define(
     'Student',

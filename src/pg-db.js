@@ -1,23 +1,29 @@
-// const { Pool } = require('pg');
+const mysql = require('mysql');
 const { db } = require('./config');
 const { Sequelize } = require('sequelize');
 
-const pool = new Pool ({
-    user: process.env.DB_USER, // process.env contains variables for the databaseconnection
-    password: process.env.DB_PASSWORD,
-    host: process.env.DB_HOST,
-    database: process.env.DB_DATABASE,
-    port: process.env.DB_PORT
+const pool = mysql.createPool ({
+    user: db.user, // process.env contains variables for the databaseconnection
+    password: db.password,
+    host: db.host,
+    database: db.database,
+    port: db.port
 })
 
 const sequelize = new Sequelize(
-    process.env.DB_DATABASE,
-    process.env.DB_USER,
-    process.env.DB_PASSWORD,
+    db.database,
+    db.user,
+    db.password,
     {
-        host: process.env.DB_HOST,
-        dialect: 'postgres',
-        }
+        host: db.host,
+        dialect: 'mysql',
+        pool: {
+            max: 5,
+            min: 0,
+            acquire: 30000,
+            idle: 10000,
+        },
+    }
 );
 
 module.exports = { pool: pool, sequelize: sequelize };

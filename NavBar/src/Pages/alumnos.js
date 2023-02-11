@@ -1,4 +1,4 @@
-import '../Styles/second.css'
+import '../Styles/main.css'
 
 function Alumnos() {
     return (

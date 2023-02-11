@@ -7,4 +7,4 @@ function Recursos() {
         </main>
     );
 }
-export defalut Recursos
+export default Recursos

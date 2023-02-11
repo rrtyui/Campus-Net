@@ -7,4 +7,4 @@ function Home() {
         </main>
     );
 }
-export defalut Home
+export default Home

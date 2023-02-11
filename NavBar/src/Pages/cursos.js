@@ -7,4 +7,4 @@ function Cursos() {
         </main>
     );
 }
-export defalut Cursos
+export default Cursos

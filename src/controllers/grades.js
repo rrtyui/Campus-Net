@@ -1,13 +1,11 @@
 const Grades = require('../models/grades');
 
-async function CreateGrades(student, grades) {
-    const Grade = await Grades.create({
-        id : student,
-        garde : grades,
-
+async function CreateGrades(student_id, grade) {
+    const Grade = await Grade.create({
+        grade : grade,
+        student_id : student_id,
     });
     console.log('Grade created:', Grade.toJson());
 }
 
-console.log(process.env);
 CreateGrades('Marcelo', '12');

@@ -24,5 +24,45 @@ async function createStudent(name, lastname, email, password) {
   }
 }
 
+async function deleteStudent(name, email) {
+  try {
+    const existingStudent = await Student.findOne({
+      where: {
+        name: name,
+        email: email,
+      }
+    });
+    if (!existingStudent) {
+      throw new Error(`No user found with name "${name}" and email "${email}"`);
+    }
+    const Result_count = await Student.collection('students').deleteOne({ name, email});
+    if (Result_count.deletedCount === 0) {
+      throw new Error(`Could not delete user with name "${name}" and email "${email}"`);
+    }
+
+    return `Successfully deleted user with name "${name}" and email "${email}"`;
+  } catch (error) {
+    console.log(error);
+    return error.message;
+  }
+}
+
+async function updateStudent(name, email, newData) {
+  try {
+    const existingStudent = await Student.collection('students').findOne({ name, email});
+    if (!existingStudent) {
+      throw new Error('No Student Found');
+    }
+    const Result_count = await Student.collection('students').updateOne({name, email},{$set: newData});
+    if (Result_count === 0) {
+      throw new Error('Could not update Student');
+    }
+    return `Successfully updated Student`;
+  } catch (error) {
+    console.log(error);
+    return error.message;
+  }
+}
+
  console.log(process.env); // see env variables
  createStudent("jacinto", "Dome", "campeo@gmail.com", "culo2000")

@@ -16,18 +16,18 @@ const createStudent = async (req, res) => {
         email: email,
       }
     });
-    
+
     if (existingStudent) {
       throw new Error('Email or Name already in use');
     }
-    
+
     const student = await Student.create({
       first_name : first_name,
       last_name: last_name,
       email: email,
       password: password,
     });
-  
+
     console.log(`Student created:`, student.toJSON());
 
     return res
@@ -42,6 +42,40 @@ const createStudent = async (req, res) => {
     console.error('An Error has ocurred: ' + error);
   }
 }
+
+const deleteStudent = async (re, res) => {
+  const {first_name, last_name, email, password} = req.body;
+
+  if (!first_name || !last_name || !email || !password) {
+    return res.status(404).json({
+      status: 'Error',
+      error: 'Bad Request - Mising Data',
+    });
+  }
+  try {
+    const existingStudent = await Student.findOne({
+      where: {
+        email: email,
+      }
+    });
+    if (!existingStudent){
+      return res.status(404).json({
+        status: 'Error',
+        Error: 'Bad Request - Students does not exists'
+      });
+    }
+    await Student.destroy();
+    res.status(200).json({
+      status: 'Error',
+      Error: Error,
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: 'Error',
+      Error: Error,
+    })
+  }
+};
 
 // async function deleteStudent(name, email) {
 //   try {
@@ -58,14 +92,14 @@ const createStudent = async (req, res) => {
 //     if (Result_count.deletedCount === 0) {
 //       throw new Error(`Could not delete user with name "${name}" and email "${email}"`);
 //     }
-// 
+//
 //     return `Successfully deleted user with name "${name}" and email "${email}"`;
 //   } catch (error) {
 //     console.log(error);
 //     return error.message;
 //   }
 // }
-// 
+//
 // async function updateStudent(name, email, newData) {
 //   try {
 //     const existingStudent = await Student.collection('students').findOne({ name, email});

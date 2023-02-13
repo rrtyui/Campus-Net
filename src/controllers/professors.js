@@ -1,25 +1,45 @@
 const Profesor = require('../models/professors');
 
-async function createProfessor(name, lastname, email, password) {
+const createProfessor = async (req, res) => {
+  const {first_name, last_name, email, password} = req.body;
+
+  if (!first_name || !last_name || !email || !password) {
+    return res.status(400).json({
+      state: "Error",
+      error: "Bad Request - Missing data",
+    });
+  }
+
   try {
     const existingProfesor = await Profesor.findOne({
       where: {
         email: email,
-        name: name,
       }
     });
+
     if (existingProfesor) {
-      throw new Error('Email or Name already in use.');
+      throw new Error('Email or Name already in use');
     }
+
     const profesor = await Profesor.create({
-      first_name : name,
-      last_name: lastname,
+      first_name : first_name,
+      last_name: last_name,
       email: email,
       password: password,
     });
-  console.log(`Professor created:`, profesor.toJSON());
+
+    console.log(`Profesor created:`, profesor.toJSON());
+
+    return res
+        .status(200)
+        .json({
+          state: "Registered",
+          id: profesor.id,
+          username: profesor.first_name,
+        });
+
   } catch (error) {
-    console.log('An error has ocurred.')
+    console.error('An Error has ocurred: ' + error);
   }
 }
 

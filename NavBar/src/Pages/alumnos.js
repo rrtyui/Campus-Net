@@ -87,7 +87,7 @@ const ShowAlumnos = () => {
             console.log(error);
         });
     }
-    const deleteProduct= (id,name) =>{
+    const deleteAlumno= (id,name) =>{
         const MySwal = withReactContent(Swal);
         MySwal.fire({
             title:'¿Seguro de eliminar el alumno '+name+' ?',
@@ -137,7 +137,7 @@ const ShowAlumnos = () => {
                                                 <i className='fa-solid fa-edit'></i>
                                             </button>
                                             &nbsp; 
-                                            <button onClick={()=>deleteProduct(alumnos.id,alumnos.name)} className='btn btn-danger'>
+                                            <button onClick={()=>deleteAlumno(alumnos.id,alumnos.name)} className='btn btn-danger'>
                                                 <i className='fa-solid fa-trash'></i>
                                             </button>
                                         </td>

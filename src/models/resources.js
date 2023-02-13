@@ -1,4 +1,4 @@
-const { Sequelize, Dataypes, Models } = require('sequelize');
+const { Sequelize, DataTypes, Models } = require('sequelize');
 const { sequelize } = require('../db');
 
 const Resource = sequelize.define(
@@ -11,7 +11,7 @@ const Resource = sequelize.define(
             primaryKey: true,
         },
         path: {
-            type: Dataypes.TEXT,
+            type: DataTypes.TEXT,
             allowNull: false,
         }
     }

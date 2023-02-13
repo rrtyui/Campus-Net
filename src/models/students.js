@@ -28,6 +28,4 @@ const Student = sequelize.define(
     }
 );
 
-console.log(process.env);
-
 module.exports = Student;

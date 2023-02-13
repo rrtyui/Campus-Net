@@ -7,14 +7,14 @@ const Course_Assigment = require('./course_assignment');
 
 // STUDENT RELATIONSHIPS:
 // Defining one-to-many relationship between student and it's grades
-Student.hasMany(models.Grade, {
+Student.hasMany(Grade, {
     as: 'grades', // alias for the association, will be like: Student.grades
     foreignKey: 'student_id',
     sourceKey: 'id', // foreign key will be referenced through this id (student's)
     onDelete: 'cascade',
 });
 
-Grade.belongsTo(models.Student, {
+Grade.belongsTo(Student, {
     as: 'student',
     foreignKey: 'student_id',
     targetKey: 'id', // references to student's id
@@ -22,14 +22,14 @@ Grade.belongsTo(models.Student, {
 
 
 // Defining one-to-many relationship between student and it's attendances
-Student.hasMany(models.Attendance, {
+Student.hasMany(Attendance, {
     as: 'attendance',
     foreignKey: 'student_id',
     sourceKey: 'id',
     onDelete: 'cascade',
 });
 
-Attendance.belongsTo(models.Student, {
+Attendance.belongsTo(Student, {
     as: 'student',
     foreignKey: 'student_id',
     targetKey: 'id',
@@ -41,24 +41,24 @@ Attendance.belongsTo(models.Student, {
 // Providing the manually created model, belongsToMany call tells sequelize to create the two 
 // attributes userId and profileId automatically, just like other associations also cause 
 //Sequelize to automatically add a column to one of the involved models.
-Student.belongsToMany(models.Course, {
+Student.belongsToMany(Course, {
     through: Course_Assigment, // Using previously created model, that's why it's not in quotes 
 });
 
-Course.belongsToMany(models.Student, {
+Course.belongsToMany(Student, {
     through: Course_Assigment,
 });
 
 
 // PROFESSOR RELATIONSHIPS:
 // Defining one-to-many relationship between student and it's grades
-Professor.hasMany(models.Course, {
+Professor.hasMany(Course, {
     as: 'courses',
     foreignKey: 'professor_id',
     sourceKey: 'id',
 });
 
-Course.hasOne(models.Professor, {
+Course.belongsTo(Professor, {
     as: 'professor',
     foreignKey: 'professor_id',
     targetKey: 'id',

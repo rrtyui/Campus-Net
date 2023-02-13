@@ -1,4 +1,4 @@
-const { Sequelize, Dataypes, Models } = require('sequelize');
+const { Sequelize, DataTypes, Models } = require('sequelize');
 const { sequelize } = require('../db');
 
 const Grade = sequelize.define(
@@ -11,7 +11,7 @@ const Grade = sequelize.define(
             primaryKey: true,
         },
         grade: {
-            type: Dataypes.FLOAT,
+            type: DataTypes.FLOAT,
             allowNull: false,
         }
     }

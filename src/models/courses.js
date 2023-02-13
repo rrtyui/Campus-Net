@@ -1,4 +1,4 @@
-const { Sequelize, Dataypes, Models } = require('sequelize');
+const { Sequelize, DataTypes, Models } = require('sequelize');
 const { sequelize } = require('../db')
 
 const Course = sequelize.define(
@@ -11,7 +11,7 @@ const Course = sequelize.define(
             primaryKey: true,
         },
         name: {
-            type: Dataypes.STRING(100),
+            type: DataTypes.STRING(100),
             allowNull: false,
         }
     }

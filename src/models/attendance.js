@@ -1,4 +1,4 @@
-const { Sequelize, Dataypes, Models } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const { sequelize } = require('../db');
 
 const Attendance = sequelize.define(
@@ -11,7 +11,7 @@ const Attendance = sequelize.define(
             primaryKey: true,
         },
         Attendance: {
-            type: Dataypes.TINYINT,
+            type: DataTypes.TINYINT,
             allowNull: false,
         }
     }

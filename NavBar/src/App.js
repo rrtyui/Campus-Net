@@ -5,6 +5,11 @@ import Home from "./Pages/home";
 import Alumnos from "./Pages/alumnos";
 import Cursos from "./Pages/cursos";
 import Recursos from "./Pages/recursos";
+import {useEffect, useState} from 'react';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import { show_alerta } from './functions';
 
 function App()
 {

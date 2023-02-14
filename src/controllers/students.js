@@ -117,4 +117,4 @@ const deleteStudent = async (re, res) => {
 //   }
 // }
 
-module.exports = {createStudent};
+module.exports = {createStudent, deleteStudent};

@@ -1,5 +1,6 @@
 const Student = require('../models/students');
 const bcrypt = require('bcrypt'); // for password enrcyptation
+const jwt = require('jsonwebtoken');
 
 const createStudent = async (req, res) => {
   const {first_name, last_name, email, password} = req.body;
@@ -113,9 +114,16 @@ const LogIn = async (req, res) => {
         Error: 'Failed Credentials',
       });
     }
-    return res.status(200).json({
+    const Studentoken = jwt.sign(
+      {
+        first_name: exisitingStudent.first_name,
+      },
+      {
+        expiresIn: '3d',
+      },
+    );
+    return res.status(200).cookie('Studentoken', Studentoken {maxAge: 5450540405, httpOnly: true}).json({
       status: 'Logged',
-      id: exisitingStudent.id,
       first_name: exisitingStudent.first_name,
     });
   } catch(error) {

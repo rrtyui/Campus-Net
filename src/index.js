@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 
 //config cors for allow cross origin resource sharing for origin localhost:3001 with credentials
 
-// app.use(Routes);
+// mounting router handlers; sets the base path for the router.
 app.use('/api/students', routeStudents);
 
 app.listen(3000, () => {

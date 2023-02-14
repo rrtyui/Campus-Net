@@ -84,6 +84,49 @@ const deleteStudent = async (req, res) => {
     })
   }
 };
+
+const LogIn = async (req, res) => {
+  const {first_name, password} = req.body;
+  if (!first_name || !password) {
+    return res.status(400).json({
+      status: 'Error',
+      error: 'Mising Data',
+    });
+  }
+  try {
+    const exisitingStudent = await Student.findOne({
+      where: {
+        first_name: first_name,
+        password: password,
+      }
+    });
+    if (!exisitingStudent) {
+      return res.status(404).json({
+        status: 'Error',
+        Error: 'Failed Credentials',
+      });
+    }
+    const Hush_password = await bcrypt.compare(password, exisitingStudent.password);
+    if (!Hush_password) {
+      return res.status(404).json({
+        status: 'Error',
+        Error: 'Failed Credentials',
+      });
+    }
+    return res.status(200).json({
+      status: 'Logged',
+      id: exisitingStudent.id,
+      first_name: exisitingStudent.first_name,
+    });
+  } catch(error) {
+    return res.status(400).json({
+      status: 'Error',
+      Error: Error,
+    });
+  }
+}
+
+
 //
 // async function updateStudent(name, email, newData) {
 //   try {

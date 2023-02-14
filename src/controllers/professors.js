@@ -80,39 +80,7 @@ const deleteProfesor = async (re, res) => {
   }
 };
 
-
-
-
-
-
-
-
-
-
-/*async function deleteProfesor(name, email) {
-  try {
-    const existingProfesor = await Profesor.findOne({
-      where: {
-        name: name,
-        email: email,
-      }
-    });
-    if (!existingProfesor) {
-      throw new Error(`No user found with name "${name}" and email "${email}"`);
-    }
-    const Result_count = await Profesor.collection('profesors').deleteOne({ name, email});
-    if (Result_count.deletedCount === 0) {
-      throw new Error(`Could not delete user with name "${name}" and email "${email}"`);
-    }
-
-    return `Successfully deleted user with name "${name}" and email "${email}"`;
-  } catch (error) {
-    console.log(error);
-    return error.message;
-  }
-}
-
-async function updateProfesor(name, email, newData) {
+/*async function updateProfesor(name, email, newData) {
   try {
     const existingProfesor = await Profesor.collection('profesor').findOne({ name, email});
     if (!existingProfesor) {

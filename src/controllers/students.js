@@ -1,4 +1,5 @@
 const Student = require('../models/students');
+const bcrypt = require('bcrypt'); // for password enrcyptation
 
 const createStudent = async (req, res) => {
   const {first_name, last_name, email, password} = req.body;
@@ -16,21 +17,22 @@ const createStudent = async (req, res) => {
         email: email,
       }
     });
-
     if (existingStudent) {
-      throw new Error('Email or Name already in use');
+      throw new Error('Email already in use');
     }
+
+    const securedPassword = await bcrypt.hash(password, 8);
 
     const student = await Student.create({
       first_name : first_name,
       last_name: last_name,
       email: email,
-      password: password,
+      password: securedPassword,
     });
 
-    console.log(`Student created:`, student.toJSON());
+    console.log(`Student created:`, student.toJSON()); // server-side
 
-    return res
+    return res // client-side
         .status(200)
         .json({
           state: "Registered",
@@ -39,7 +41,13 @@ const createStudent = async (req, res) => {
         });
 
   } catch (error) {
-    console.error('An Error has ocurred: ' + error);
+    console.error('An Error has ocurred: ' + error); // for server-side
+    return res // what the "client" sees
+    .status(500)
+    .json({
+      state: "Error",
+      error: error.message,
+    });
   }
 }
 

@@ -23,21 +23,21 @@ const createStudent = async (req, res) => {
 
     const securedPassword = await bcrypt.hash(password, 8);
 
-    const student = await Student.create({
+    const newStudent = await Student.create({
       first_name : first_name,
       last_name: last_name,
       email: email,
       password: securedPassword,
     });
 
-    console.log(`Student created:`, student.toJSON()); // server-side
+    console.log(`Student created:`, newStudent.toJSON()); // server-side
 
     return res // client-side
         .status(200)
         .json({
           state: "Registered",
-          id: student.id,
-          username: student.first_name,
+          id: newStudent.id,
+          username: newStudent.first_name,
         });
 
   } catch (error) {

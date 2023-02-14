@@ -6,8 +6,8 @@ const Course = sequelize.define(
     {
         // Model attributes are defined here
         id: {
-            type: Sequelize.UUID,
-            defaultValue: Sequelize.UUIDV4,
+            type: Sequelize.INTEGER,
+            autoIncrement: true,
             primaryKey: true,
         },
         name: {

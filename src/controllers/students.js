@@ -43,7 +43,7 @@ const createStudent = async (req, res) => {
   }
 }
 
-const deleteStudent = async (re, res) => {
+const deleteStudent = async (req, res) => {
   const {first_name, last_name, email, password} = req.body;
 
   if (!first_name || !last_name || !email || !password) {

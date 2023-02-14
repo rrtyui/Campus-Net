@@ -1,4 +1,5 @@
 const Profesor = require('../models/professors');
+const bcrypt = require('bcrypt'); // for password enrcyptation
 
 const createProfessor = async (req, res) => {
   const {first_name, last_name, email, password} = req.body;
@@ -21,11 +22,13 @@ const createProfessor = async (req, res) => {
       throw new Error('Email or Name already in use');
     }
 
+    const securedPassword = await bcrypt.hash(password, 8);
+
     const profesor = await Profesor.create({
       first_name : first_name,
       last_name: last_name,
       email: email,
-      password: password,
+      password: securedPassword,
     });
 
     console.log(`Profesor created:`, profesor.toJSON());

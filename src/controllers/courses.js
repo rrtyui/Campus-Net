@@ -1,59 +1,45 @@
-const Courses = require('../models/courses');
+const Course = require('../models/courses');
+const Professor = require('../models/professors');
+require('../models/associations'); // for using createCourse association method, won't be recognized here otherwise
 
-async function CreateCourse(student_id, course ) {
-    const exisitngCourse = await Courses.findOne({
-        where: {
-            course: course,
-        }
+async function createCourse(req, res) {
+  const { course_name, professor_id } = req.body;
+  if (!course_name || !professor_id ) {
+    return res.status(400).json({
+      state: "Error",
+      error: "Bad Request - Missing data",
     });
-    if (exisitngCourse) {
-        throw new Error('Course already created')
+  }
+  try {
+    const professor = await Professor.findByPk(professor_id);
+    if (!professor) {
+      throw new Error('Professor\'s identity is not found or doesn\'t exists');
     }
-    const Course = await Courses.create ({
-        course : course,
-        student_id: student_id,
+
+    const newCourse = await professor.createCourse({
+      name: course_name,
+    }); // professor_id will be added automatically by the association made 
+
+    console.log(`Course has been created in database:`, newCourse.toJSON());
+
+    return res
+        .status(201)
+        .json({
+          state: "Course succesfully registered",
+          courseName: newCourse.name,
+          course_professor: professor.first_name + ' ' + professor.last_name
+        });
+
+  } catch (error) {
+    console.error('An Error has ocurred: ' + error); // for server-side
+
+    return res // what the "client" sees
+    .status(500)
+    .json({
+      state: "Error",
+      error: error.message,
     });
-    console.log('Corse Created', Course.toJSON());
+  }
 }
 
-
-async function deleteCourse(course) {
-    try {
-      const existingCourse = await Courses.findOne({
-        where: {
-          course: course,
-        }
-      });
-      if (!existingCourse) {
-        throw new Error(`Course Not Found`);
-      }
-      const Result_count = await Courses.collection('courses').deleteOne({ course });
-      if (Result_count.deletedCount === 0) {
-        throw new Error(`Could not delete course`);
-      }
-
-      return `Successfully deleted course`;
-    } catch (error) {
-      console.log(error);
-      return error.message;
-    }
-  }
-
-  async function updateCourse(course, newData) {
-    try {
-      const existingCourse = await Courses.collection('course').findOne({ course});
-      if (!existingCourse) {
-        throw new Error('No Course Found');
-      }
-      const Result_count = await Courses.collection('course').updateOne({course},{$set: newData});
-      if (Result_count === 0) {
-        throw new Error('Could not update Course');
-      }
-      return `Successfully updated Course`;
-    } catch (error) {
-      console.log(error);
-      return error.message;
-    }
-  }
-
-CreateCourse('44', 'Matematicas');
+module.exports = { createCourse };

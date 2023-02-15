@@ -43,11 +43,11 @@ Attendance.belongsTo(Student, {
 //Sequelize to automatically add a column to one of the involved models.
 Student.belongsToMany(Course, {
     through: Course_Assigment, // Using previously created model, that's why it's not in quotes 
-});
+}); // creates automatic methods: getCourses, setCourses, addCourse, addCourses to Student 
 
 Course.belongsToMany(Student, {
     through: Course_Assigment,
-});
+}); // same here: getStudents, setStudents, addStudent, addStudents to Course
 
 
 // PROFESSOR RELATIONSHIPS:

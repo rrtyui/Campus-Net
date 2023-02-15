@@ -33,7 +33,7 @@ const createStudent = async (req, res) => {
     console.log(`Student created:`, newStudent.toJSON()); // server-side
 
     return res // client-side
-        .status(200)
+        .status(201)
         .json({
           state: "Student succesfully registered",
           id: newStudent.id,

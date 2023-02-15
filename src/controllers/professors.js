@@ -33,7 +33,7 @@ const createProfessor = async (req, res) => {
     console.log(`Profesor created:`, newProfesor.toJSON());
 
     return res
-        .status(200)
+        .status(201)
         .json({
           state: "Professor succesfully registered",
           id: newProfesor.id,

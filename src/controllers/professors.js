@@ -17,32 +17,38 @@ const createProfessor = async (req, res) => {
         email: email,
       }
     });
-
     if (existingProfesor) {
-      throw new Error('Email or Name already in use');
+      throw new Error('Email already in use, please provide another one');
     }
 
     const securedPassword = await bcrypt.hash(password, 8);
 
-    const profesor = await Profesor.create({
+    const newProfesor = await Profesor.create({
       first_name : first_name,
       last_name: last_name,
       email: email,
       password: securedPassword,
     });
 
-    console.log(`Profesor created:`, profesor.toJSON());
+    console.log(`Profesor created:`, newProfesor.toJSON());
 
     return res
         .status(200)
         .json({
-          state: "Registered",
-          id: profesor.id,
-          username: profesor.first_name,
+          state: "Professor succesfully registered",
+          id: newProfesor.id,
+          professor_name: newProfesor.first_name + ' ' + newProfesor.last_name,
         });
 
   } catch (error) {
     console.error('An Error has ocurred: ' + error);
+    
+    return res
+    .status(500)
+    .json({
+      state: "Error",
+      error: error.message,
+    });
   }
 }
 
@@ -98,5 +104,4 @@ const deleteProfesor = async (re, res) => {
 }*/
 
 
-// console.log(process.env); // see env variables
-createProfessor("Alastor", "Moody", "buzzyogurtlight@gmail.com", "macklemore");
+module.exports = { createProfessor };

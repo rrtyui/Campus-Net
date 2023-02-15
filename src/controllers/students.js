@@ -1,6 +1,5 @@
 const Student = require('../models/students');
 const bcrypt = require('bcrypt'); // for password enrcyptation
-const jwt = require('jsonwebtoken');
 
 const createStudent = async (req, res) => {
   const {first_name, last_name, email, password} = req.body;
@@ -19,7 +18,7 @@ const createStudent = async (req, res) => {
       }
     });
     if (existingStudent) {
-      throw new Error('Email already in use');
+      throw new Error('Email already in use, please provide another one');
     }
 
     const securedPassword = await bcrypt.hash(password, 8);
@@ -36,13 +35,14 @@ const createStudent = async (req, res) => {
     return res // client-side
         .status(200)
         .json({
-          state: "Registered",
+          state: "Student succesfully registered",
           id: newStudent.id,
-          username: newStudent.first_name,
+          student_name: newStudent.first_name + ' ' + newStudent.last_name,
         });
 
   } catch (error) {
     console.error('An Error has ocurred: ' + error); // for server-side
+  
     return res // what the "client" sees
     .status(500)
     .json({
@@ -86,53 +86,53 @@ const deleteStudent = async (req, res) => {
   }
 };
 
-const LogIn = async (req, res) => {
-  const {first_name, password} = req.body;
-  if (!first_name || !password) {
-    return res.status(400).json({
-      status: 'Error',
-      error: 'Mising Data',
-    });
-  }
-  try {
-    const exisitingStudent = await Student.findOne({
-      where: {
-        first_name: first_name,
-        password: password,
-      }
-    });
-    if (!exisitingStudent) {
-      return res.status(404).json({
-        status: 'Error',
-        Error: 'Failed Credentials',
-      });
-    }
-    const Hush_password = await bcrypt.compare(password, exisitingStudent.password);
-    if (!Hush_password) {
-      return res.status(404).json({
-        status: 'Error',
-        Error: 'Failed Credentials',
-      });
-    }
-    const Studentoken = jwt.sign(
-      {
-        first_name: exisitingStudent.first_name,
-      },
-      {
-        expiresIn: '3d',
-      },
-    );
-    return res.status(200).cookie('Studentoken', Studentoken {maxAge: 5450540405, httpOnly: true}).json({
-      status: 'Logged',
-      first_name: exisitingStudent.first_name,
-    });
-  } catch(error) {
-    return res.status(400).json({
-      status: 'Error',
-      Error: Error,
-    });
-  }
-}
+// const LogIn = async (req, res) => {
+//   const {first_name, password} = req.body;
+//   if (!first_name || !password) {
+//     return res.status(400).json({
+//       status: 'Error',
+//       error: 'Mising Data',
+//     });
+//   }
+//   try {
+//     const exisitingStudent = await Student.findOne({
+//       where: {
+//         first_name: first_name,
+//         password: password,
+//       }
+//     });
+//     if (!exisitingStudent) {
+//       return res.status(404).json({
+//         status: 'Error',
+//         Error: 'Failed Credentials',
+//       });
+//     }
+//     const Hush_password = await bcrypt.compare(password, exisitingStudent.password);
+//     if (!Hush_password) {
+//       return res.status(404).json({
+//         status: 'Error',
+//         Error: 'Failed Credentials',
+//       });
+//     }
+//     const Studentoken = jwt.sign(
+//       {
+//         first_name: exisitingStudent.first_name,
+//       },
+//       {
+//         expiresIn: '3d',
+//       },
+//     );
+//     return res.status(200).cookie('Studentoken', Studentoken {maxAge: 5450540405, httpOnly: true}).json({
+//       status: 'Logged',
+//       first_name: exisitingStudent.first_name,
+//     });
+//   } catch(error) {
+//     return res.status(400).json({
+//       status: 'Error',
+//       Error: Error,
+//     });
+//   }
+// }
 
 
 //

@@ -20,10 +20,6 @@ const { sequelize } = require('./db');
 app.use(express.json()); // understand json
 app.use(morgan('dev')); // watch requests on terminal
 
-app.get('/', (req, res) => {
-  res.send("I can hear you");
-});
-
 //config cors for allow cross origin resource sharing for origin localhost:3001 with credentials
 
 // mounting router handlers; sets the base path for the router.
@@ -32,7 +28,7 @@ app.use('/professors', routeProfessors);
 
 app.listen(3000, () => {
   sequelize.sync().then(() => {
-    console.log("Connectioan to database successful");
+    console.log("Connection to database successful");
   });
   console.log("Running on server with port 3000");
 });

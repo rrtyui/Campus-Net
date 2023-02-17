@@ -1,4 +1,3 @@
-const { NOW } = require('sequelize');
 const Course = require('../models/courses');
 const Professor = require('../models/professors');
 const Student = require('../models/students');

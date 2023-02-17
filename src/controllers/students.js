@@ -37,11 +37,11 @@ const createStudent = async (req, res) => {
         .json({
           state: "Student succesfully registered",
           id: newStudent.id,
-          student_name: newStudent.first_name + ' ' + newStudent.last_name,
+          student_name: newStudent.fullName,
         });
 
   } catch (error) {
-    console.error('An Error has ocurred: ' + error); // for server-side
+    console.error('An Error has ocurred: ' + error.message); // for server-side
   
     return res // what the "client" sees
     .status(500)

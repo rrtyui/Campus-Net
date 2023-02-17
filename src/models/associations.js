@@ -11,7 +11,7 @@ Student.hasMany(Grade, {
     as: 'grades', // alias for the association, will be like: Student.grades
     foreignKey: 'student_id',
     sourceKey: 'id', // foreign key will be referenced through this id (student's)
-    onDelete: 'cascade',
+    onDelete: 'cascade', // if a student gets deleted, its grades will also be deleted
 });
 
 Grade.belongsTo(Student, {

@@ -40,7 +40,7 @@ async function addStudentsToCourse(req, res) {
         });
 
   } catch (error) {
-    console.error('An Error has ocurred: ' + error); // for server-side
+    console.error('An Error has ocurred: ' + error.message); // for server-side
 
     return res // what the "client" sees
     .status(500)

@@ -41,7 +41,7 @@ const createProfessor = async (req, res) => {
         });
 
   } catch (error) {
-    console.error('An Error has ocurred: ' + error);
+    console.error('An Error has ocurred: ' + error.message);
     
     return res
     .status(500)

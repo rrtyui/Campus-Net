@@ -24,6 +24,15 @@ const Professor = sequelize.define(
       },
       password: {
         type: DataTypes.STRING(100),
+      },
+      fullName: {
+        type: DataTypes.VIRTUAL, // virtual column, won't appear in database
+        get() {
+          return `${this.first_name} ${this.last_name}`;
+        },
+        set(value) {
+          throw new Error('Do not try to set the `fullName` value!');
+        }
       }
     }
 );

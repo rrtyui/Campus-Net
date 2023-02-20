@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import "../Styles/main.css";
-import { Link } from "react-router-dom";
+
 
 
 
@@ -13,7 +13,7 @@ function Navbar() {
 	};
 
 	return (
-		<header>
+		<header className="top-0">
 			<h3>CampusNET</h3>
 			<nav ref={navRef}>
 				<a href="/home">Inicio</a>

@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { show_alerta } from '../functions';
 
+
 const ShowAlumnos = () => {
     const url='';
     const [alumnos,setAlumnos]= useState([]);

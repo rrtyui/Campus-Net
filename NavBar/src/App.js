@@ -10,17 +10,15 @@ function App()
 {
 	return (
 		<BrowserRouter>
-			<React.Fragment>
-				<Navbar />
-			</React.Fragment>
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/Alumnos" element={<Alumnos />} />
-					<Route path="/Cursos" element={<Cursos />} />
-					<Route path="/Recursos" element={<Recursos />} />
-				</Routes>
+			<Navbar />
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/Alumnos" element={<Alumnos />} />
+				<Route path="/Cursos" element={<Cursos />} />
+				<Route path="/Recursos" element={<Recursos />} />
+			</Routes>
 		</BrowserRouter>
-			);
+	);
 }
 
 export default App;

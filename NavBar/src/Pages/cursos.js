@@ -1,9 +1,36 @@
 import axios from "axios";
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect} from "react";
 import '../Styles/main.css'
 import { Link } from "react-router-dom";
 
+import Card from "../Components/Card";
+import Newcourse from "../Components/Newcourse";
 
+import image1 from "../assets/image1.jpg";
+import image2 from '../assets/image2.jpg';
+import image3 from '../assets/image3.jpg';
+
+
+const cards = [
+    {
+      id: 1,
+      title: "Inglés",
+      image: image1,
+      url: "https://es.wikipedia.org/wiki/Idioma_ingl%C3%A9s",
+    },
+    {
+      id: 2,
+      title: "Francés",
+      image: image2,
+      url: "https://es.wikipedia.org/wiki/Idioma_franc%C3%A9s",
+    },
+    {
+      id: 3,
+      title: "Italiano",
+      image: image3,
+      url: "https://es.wikipedia.org/wiki/Idioma_italiano",
+    },
+  ];
 
 function Cursos() {
 
@@ -31,48 +58,37 @@ function Cursos() {
         </div>
     ))
    
-    const handleClick = () => {
-          console.log('Button clicked!');
-        };
+   
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            const response = await axios.post("http://localhost:3000/create_course", {
-                id: id,
-                name: name,
-            })
-
-            if (response.status === "OK") {
-                setData([...data, {id, name}])
-            }
-        } catch (err) {
-            console.log(err);
-        }
-        // setData([...data, {id, name}])
-    }
 
     return (
-    <main>    
-    
+        <div className="container  align-items-center h-100 row  align-items-center">
 
+            
       
-     <div>   
-        <form onSubmit={onSubmit}>
-        <input type="text" name="id" onChange={(e) => setId(e.target.value)} value={id} />
-        <input type="text" name="name" onChange={(e) => setName(e.target.value)} value={name} />
-        <button type="submit">Submit</button>
-        {renderedData}
-        
-        <button type="submit" onClick={handleClick}>Click me!</button> 
-        
-        </form>
-        </div>
-        </main>
-        
-    
-    
+            
+            
+        <div className="col-md-4 ">
+         <Newcourse />
+         </div>
+         
+         
+         {cards.map(({ title, image, url, id }) => (
+           <div className="col-md-4 position-sticky" key={id}>
+
+            {
+
+                //aca hay que cambiar el .map a nuestra base de datos, pasando los datos que necesitamos para crear las cards (el modelo de estas cards está en ../Components/Cards.js)
+                //el dato "url" no lo necesitamos, se usa ahora como ejemplo, ese link deberá cambiarse en el boton por otro link al panel crud de cursos con el id específico de cada curso 
+                //(dicho link se cambia en ../Components/Cards.js)
+            }
+             
+             
+             <Card imageSource={image} title={title} url={url} />
+           </div>
+           
+         ))}
+       </div>       
   )
 }
 

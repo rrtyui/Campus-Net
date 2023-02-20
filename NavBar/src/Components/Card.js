@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-
+import editcourses from "../Pages/editcourses"
 import "./card.css";
 
 function Card({ imageSource, title, text, url }) {
@@ -11,9 +12,8 @@ function Card({ imageSource, title, text, url }) {
       </div>
       <div className="card-body text-primary">
         <h2 className="card-title">{title}</h2>
-        <a
-          href={url ? url : "#!"}
-          target="_blank"
+        <Link to={`/editcourses`}
+        onClick={editcourses}
           className="btn btn-outline-primary bg-primary text-light "
           rel="noreferrer"
         >
@@ -21,7 +21,7 @@ function Card({ imageSource, title, text, url }) {
           {
             //la idea es que aca vaya onclick con link a una nueva página con un crud del grupo seleccionado 
           }
-        </a>
+        </Link>
       </div>
     </div>
   );

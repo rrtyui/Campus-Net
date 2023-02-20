@@ -111,7 +111,7 @@ const ShowAlumnos = () => {
             <div className='row mt-3'>
                 <div className='col-md-4 offset-md-4'>
                     <div className='d-grid mx-auto'>
-                        <button onClick={()=> openModal(1)} className='btn btn-dark' data-bs-toggle='modal' data-bs-target='#modalProducts'>
+                        <button onClick={()=> openModal(1)} className='btn btn-primary text-light' data-bs-toggle='modal' data-bs-target='#modalProducts'>
                             <i className='fa-solid fa-circle-plus'></i> Añadir
                         </button>
                     </div>

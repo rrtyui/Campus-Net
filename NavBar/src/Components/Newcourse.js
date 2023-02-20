@@ -52,18 +52,17 @@ function Newcourse({}) {
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Profesor Asignado</label>
-    <input type="professor" class="form-control" id="exampleProfessor" placeholder="Ingresa el Profesor"></input>
+    <input type="professor" class="form-control" id="exampleProfessor" placeholder="Ingresar Profesor"></input>
   </div>
-  <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1"></input>
-   
-  </div>
+  <button onClick={() => cambiarEstadoModal1(!estadoModal1)} className='btn btn-outline-secondary bg-primary text-light' data-bs-toggle='modal' data-bs-target='#modalProducts'>
+                            <i className='fa-solid fa-circle-plus'></i> Crear Curso
+                        </button>
 
 </form>
-					<Boton onClick={() => cambiarEstadoModal1(!estadoModal1)}>Crear</Boton>
+					
           {
             //aca hay que hacer llamada a db para crear el grupo con los datos que ingrese el usuario 
-            
+
             // const onSubmit = async (e) => {
               // e.preventDefault();
               //try {

@@ -42,7 +42,6 @@ const Overlay = styled.div`
 	width: 100vw;
 	height: 100vh;
     position: fixed;
-	position: absolute;
     fixed: top;
     
 	top: 0;

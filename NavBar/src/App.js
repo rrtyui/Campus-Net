@@ -5,6 +5,7 @@ import Home from "./Pages/home";
 import Alumnos from "./Pages/alumnos";
 import Cursos from "./Pages/cursos";
 import Recursos from "./Pages/recursos";
+import Editcourses from "./Pages/editcourses"
 
 function App()
 {
@@ -16,6 +17,7 @@ function App()
 				<Route path="/Alumnos" element={<Alumnos />} />
 				<Route path="/Cursos" element={<Cursos />} />
 				<Route path="/Recursos" element={<Recursos />} />
+				<Route path="/Editcourses" element={<Editcourses />} />
 			</Routes>
 		</BrowserRouter>
 	);

@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const app = express();
+const cors = require('cors');
 
 // importing modular routes handlers from routes directory
 const routeStudents = require('./routes/routesStudents');
@@ -20,7 +21,8 @@ const { sequelize } = require('./db');
 app.use(express.json()); // understand json
 app.use(morgan('dev')); // watch requests on terminal
 
-//config cors for allow cross origin resource sharing for origin localhost:3001 with credentials
+//config cors for allow ALL cross origin resource sharing
+app.use(cors());
 
 // mounting router handlers; sets the base path for the router.
 app.use('/students', routeStudents);

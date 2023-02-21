@@ -7,7 +7,7 @@ const { Op } = require('sequelize');
 
 async function createCourse(req, res) {
   const { course_name, prof_first_name, prof_last_name } = req.body;
-  if (!course_name || !prof_first_name || !prof_last_name ) {
+  if (!course_name || !prof_first_name ) {
     return res.status(400).json({
       state: "Error",
       error: "Bad Request - Missing data",
@@ -15,7 +15,7 @@ async function createCourse(req, res) {
   }
   try {
     const professor = await Professor.findOne({ where: { 
-      [Op.and]: [{ first_name: prof_first_name }, { last_name: prof_last_name }],
+      first_name: prof_first_name,
      }
     });
     if (!professor) {

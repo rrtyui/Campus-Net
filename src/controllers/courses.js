@@ -3,19 +3,23 @@ const Professor = require('../models/professors');
 const Student = require('../models/students');
 const { addStudentsToCourse } = require('./course_assignment');
 require('../models/associations'); // for using createCourse association method, won't be recognized here otherwise
+const { Op } = require('sequelize');
 
 async function createCourse(req, res) {
-  const { course_name, professor_id } = req.body;
-  if (!course_name || !professor_id ) {
+  const { course_name, prof_first_name, prof_last_name } = req.body;
+  if (!course_name || !prof_first_name || !prof_last_name ) {
     return res.status(400).json({
       state: "Error",
       error: "Bad Request - Missing data",
     });
   }
   try {
-    const professor = await Professor.findByPk(professor_id);
+    const professor = await Professor.findOne({ where: { 
+      [Op.and]: [{ first_name: prof_first_name }, { last_name: prof_last_name }],
+     }
+    });
     if (!professor) {
-      throw new Error('Professor\'s identity is not found or doesn\'t exists');
+      throw new Error('Professor is not found or doesn\'t exists');
     }
 
     const newCourse = await professor.createCourse({
@@ -29,7 +33,9 @@ async function createCourse(req, res) {
         .json({
           state: "Course succesfully registered",
           courseName: newCourse.name,
-          course_professor: professor.first_name + ' ' + professor.last_name
+          course_id: newCourse.id,
+          course_professor: professor.fullName,
+          course_professor_id: newCourse.professor_id,
         });
 
   } catch (error) {

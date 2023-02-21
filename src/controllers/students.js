@@ -35,7 +35,8 @@ const createStudent = async (req, res) => {
         .json({
           state: "Student succesfully registered",
           id: newStudent.id,
-          student_name: newStudent.first_name,
+          name: newStudent.first_name,
+          email: newStudent.email,
         });
 
   } catch (error) {
@@ -70,8 +71,8 @@ const findStudent = async (req, res) => {
     .status(201)
     .json({
       state: "Student has been found",
-      student_name : studentFound.first_name,
-      student_email: studentFound.email,
+      name : studentFound.first_name,
+      email: studentFound.email,
     });
 
   } catch (error) {

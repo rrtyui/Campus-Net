@@ -85,5 +85,31 @@ const findStudent = async (req, res) => {
   }
 }
 
+const findAllStudents = async (req, res) => {
+  try {
+    const allStudents = await Student.findAll();
+    if (!allStudents) {
+      throw new Error('No students where found');
+    }
 
-module.exports = {createStudent, findStudent};
+    const studentNames = allStudents.map((student) => student.first_name);
+    console.log(`Students have been found:`, studentNames);
+    
+    return res
+    .status(201)
+    .json({
+      state: "Students have been found",
+      names : studentNames,
+    });
+
+  } catch (error) {
+    console.error("An error has ocurred: " + error.message);
+
+    return res.status(500).json({
+      state: "Error",
+      error: error.message,
+    });
+  }
+}
+
+module.exports = {createStudent, findStudent, findAllStudents};

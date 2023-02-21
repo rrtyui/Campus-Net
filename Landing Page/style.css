@@ -104,21 +104,31 @@ nav .fa{
 
 
 .about-us{
-    width: 80%;
+    width: 100%;
     margin: auto;
     text-align: center;
-    padding-top: 100px;
+    padding: 600px 0;
+    padding-top: 300px;
 }
 h1{
-    font-size: 36px;
+    font-size: 66px;
     font-weight: 600;
 }
 p{
-    color: #01030d;
+    color: #000000;
     font-size: 14px;
     font-weight: 300;
     line-height: 22px;
     padding: 10px;
+}
+
+.contact-us{
+  width: 100%;
+  color: #f8f8f8;
+}
+h1{
+  padding: 55px;
+  text-shadow: #f4f4f4;
 }
 
 /* Three columns side by side */
@@ -126,13 +136,14 @@ p{
     float: left;
     width: 33.3%;
     margin-bottom: 16px;
+    margin:0 10%;
     padding: 0 8px;
   }
 
   /* Display the columns below each other instead of side by side on small screens */
   @media screen and (max-width: 650px) {
     .column {
-      width: 100%;
+      width: 90%;
       display: block;
     }
   }
@@ -144,7 +155,9 @@ p{
 
   /* Some left and right padding inside the container */
   .container {
-    padding: 0 13px;
+    padding: 0 15px;
+    padding-bottom: 50px;
+
   }
 
   /* Clear floats */
@@ -164,14 +177,14 @@ p{
     display: inline-block;
     padding: 8px;
     color: white;
-    background-color: #090909;
+    background-color: #000000;
     text-align: center;
     cursor: pointer;
     width: 100%;
   }
 
   .button:hover {
-    background-color: #f4f4f4;
+    background-color: #2fa7cc;
   }
 
   .row {
@@ -181,11 +194,11 @@ p{
 
   .column {
     flex: 1;
-    margin: 0 10px;
+    margin: 0 30px;
     max-width: 300px;
   }
   .Footer{
-    background-color: #fbf4f4;
+    background-color: #000000;
   }
 
   .contact-us{
@@ -194,12 +207,13 @@ p{
     text-align: center;
     padding-top: 100px;
     background-color: #2e5ca5;
+    padding-bottom: 150px;
 }
 
 .footer-basic {
     padding:40px 0;
-    background-color:#ffffff;
-    color:#4b4c4d;
+    background-color:#000000;
+    color:#ffffff;
   }
 
   .footer-basic ul {
@@ -252,6 +266,6 @@ p{
     margin-top:15px;
     text-align:center;
     font-size:13px;
-    color:#aaa;
+    color:#2fa7cc;
     margin-bottom:0;
   }

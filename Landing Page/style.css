@@ -139,12 +139,12 @@ p{
 
   /* Add some shadows to create a card effect */
   .card {
-    box-shadow: 0 4px 8px 0 rgba(241, 238, 238, 0.2);
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.913);
   }
 
   /* Some left and right padding inside the container */
   .container {
-    padding: 0 16px;
+    padding: 0 13px;
   }
 
   /* Clear floats */

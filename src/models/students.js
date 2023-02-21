@@ -16,7 +16,8 @@ const Student = sequelize.define(
       },
       last_name: {
         type: DataTypes.STRING(100),
-        allowNull: false,
+        defaultValue: 'no_last_name', // added on 21st feb 2023
+        // allowNull: false,
       },
       email: {
         type: DataTypes.STRING(100),
@@ -24,6 +25,7 @@ const Student = sequelize.define(
       },
       password: {
         type: DataTypes.STRING(100),
+        defaultValue: 'pswd', // added on 21st feb 2023
       },
       fullName: {
         type: DataTypes.VIRTUAL, // virtual column, won't appear in database

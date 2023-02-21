@@ -71,7 +71,7 @@ async function getCourseStudents(req, res) {
     }
 
     // take each name of the current element(student) from the array (students) and return it to the newly created array (studentNames)
-    const studentNames = students.map((student) => student.fullName);
+    const studentNames = students.map((student) => student.first_name);
 
     return res
         .status(200)
@@ -79,8 +79,8 @@ async function getCourseStudents(req, res) {
           state: "Course succesfully fetched",
           courseStudents: studentNames,
       });
-  }
-  catch (error) {
+
+  } catch (error) {
     console.error("An error has ocurred: " + error.message);
 
     return res // what the "client" sees

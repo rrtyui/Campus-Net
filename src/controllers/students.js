@@ -2,9 +2,9 @@ const Student = require('../models/students');
 const bcrypt = require('bcrypt'); // for password enrcyptation
 
 const createStudent = async (req, res) => {
-  const {first_name, last_name, email, password} = req.body;
+  const {first_name, email} = req.body;
 
-  if (!first_name || !last_name || !email || !password) {
+  if (!first_name || !email) {
     return res.status(400).json({
       state: "Error",
       error: "Bad Request - Missing data",
@@ -21,13 +21,11 @@ const createStudent = async (req, res) => {
       throw new Error('Email already in use, please provide another one');
     }
 
-    const securedPassword = await bcrypt.hash(password, 8);
+    // const securedPassword = await bcrypt.hash(password, 8);
 
     const newStudent = await Student.create({
       first_name : first_name,
-      last_name: last_name,
       email: email,
-      password: securedPassword,
     });
 
     console.log(`Student created:`, newStudent.toJSON()); // server-side
@@ -37,7 +35,7 @@ const createStudent = async (req, res) => {
         .json({
           state: "Student succesfully registered",
           id: newStudent.id,
-          student_name: newStudent.fullName,
+          student_name: newStudent.first_name,
         });
 
   } catch (error) {
@@ -52,5 +50,39 @@ const createStudent = async (req, res) => {
   }
 }
 
+const findStudent = async (req, res) => {
+  const student_id = req.query.StudentId;
+  if (!student_id) {
+    return res.status(400).json({
+      state: "Error",
+      error: "Bad Request - Missing data",
+    });
+  }
+  try {
+    const studentFound = await Student.findByPk(student_id);
+    if (!studentFound) {
+      throw new Error('Student doesn\'t exists in records');
+    }
 
-module.exports = {createStudent};
+    console.log(`Student has been found:`, studentFound.first_name);
+    
+    return res
+    .status(201)
+    .json({
+      state: "Student has been found",
+      student_name : studentFound.first_name,
+      student_email: studentFound.email,
+    });
+
+  } catch (error) {
+    console.error("An error has ocurred: " + error.message);
+
+    return res.status(500).json({
+      state: "Error",
+      error: error.message,
+    });
+  }
+}
+
+
+module.exports = {createStudent, findStudent};

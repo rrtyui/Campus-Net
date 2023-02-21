@@ -92,14 +92,14 @@ const findAllStudents = async (req, res) => {
       throw new Error('No students where found');
     }
 
-    const studentNames = allStudents.map((student) => student.first_name);
-    console.log(`Students have been found:`, studentNames);
+    const studentsdata = allStudents.map((student) => ({ name: student.first_name, email: student.email }));
+    console.log(`Students have been found:`, studentsdata);
     
     return res
     .status(201)
     .json({
       state: "Students have been found",
-      names : studentNames,
+      students : studentsdata,
     });
 
   } catch (error) {

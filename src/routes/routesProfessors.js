@@ -12,7 +12,7 @@ routeProfessors.post('/register', createProfessor);
 routeProfessors.post('/courses/create', createCourse); // professor creates (POST) course
 routeProfessors.post('/courses/modify', addStudentsToCourse)
 routeProfessors.get('/courses/see', getCourseStudents);
-routeProfessors.get('/students/all/see', findStudent); // see a particular student example: "localhost:3000/professors/students/all/see?StudentId=4"
-routeProfessors.get('/students/all', findAllStudents); // see all students
+routeProfessors.get('/students/see', findStudent);
+routeProfessors.get('/students/see/all', findAllStudents);
 
 module.exports = routeProfessors;

@@ -2,9 +2,9 @@ const Student = require('../models/students');
 const bcrypt = require('bcrypt'); // for password enrcyptation
 
 const createStudent = async (req, res) => {
-  const {first_name, email} = req.body;
+  const {name, email} = req.body;
 
-  if (!first_name || !email) {
+  if (!name || !email) {
     return res.status(400).json({
       state: "Error",
       error: "Bad Request - Missing data",
@@ -24,7 +24,7 @@ const createStudent = async (req, res) => {
     // const securedPassword = await bcrypt.hash(password, 8);
 
     const newStudent = await Student.create({
-      first_name : first_name,
+      first_name : name,
       email: email,
     });
 

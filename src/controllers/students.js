@@ -1,6 +1,18 @@
 const Student = require('../models/students');
 const bcrypt = require('bcrypt'); // for password enrcyptation
 
+function isAlphabetical(input) {
+  return /^[a-zA-Z]+$/.test(input); // matches any string that contains only alphabetical characters, from the beginning to the end of the string
+  // +$ in a regular expression means that the preceding character or group must occur one or more times, and must be present at the end of the string.
+}
+function isValidEmail(email) {
+  // Regular expression to match a valid email address
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  // notWhitespaceOr@ + @ + notWhitespaceOr@ + . + notWhitespaceOr@
+  // +: a rule that a certain character or group (such as "/[0-9]+/") must occur one or more times in order for the regular expression to match.
+  return emailRegex.test(email);
+}
+
 const createStudent = async (req, res) => {
   const {name, email} = req.body;
 
@@ -10,7 +22,13 @@ const createStudent = async (req, res) => {
       error: "Bad Request - Missing data",
     });
   }
-
+  if (!isAlphabetical(name) || !isValidEmail(email))
+  {
+    return res.status(400).json({
+      state: "Error",
+      error: "Bad Request - Data passed is malformed, check request again",
+    });
+  }
   try {
     const existingStudent = await Student.findOne({
       where: {
@@ -142,4 +160,66 @@ const deleteStudent = async (req, res) => {
   }
 }
 
-module.exports = {createStudent, findStudent, findAllStudents, deleteStudent};
+const updateStudent = async (req, res) => {
+  const { studentId, name, email } = req.body;
+  if (!studentId ) {
+    return res
+    .status(400)
+    .json({
+      state: "Error",
+      error: "Bad Request - Missing data",
+    });
+  }
+  try {
+    const studentUpd = await Student.findByPk(studentId);
+    if (!studentUpd){
+      throw new Error('No student found for updating, check again');
+    }
+    if (isAlphabetical(name)){ // name = first_name
+        studentUpd.first_name = name;
+        await studentUpd.save(); // save changes to database
+        console.log("First name updated");
+        return res
+        .status(200)
+        .json({
+          state: "Student's name updated successfully",
+          name: studentUpd.first_name
+        });
+    } else if (isValidEmail(email)){
+      studentUpd.email = email;
+      await studentUpd.save();
+      console.log('Email updated');
+      return res
+      .status(200)
+      .json({
+        state: "Student's email updated successfully",
+        email: studentUpd.email
+      });
+    //} else if (req.body.last_name) { // not updated, use validation
+      //studentUpd.last_name = newData.last_name;
+      // await studentUpd.save()
+      //  return res
+      //    .status(200)
+      //    .json({
+      //      state: "Student updated successfully",
+      //      updatedStudent: studentUpd
+      //    });
+    } else {
+      return res.status(400).json({
+        state: "Error",
+        error: "Bad Request - Data passed is malformed, check request again",
+      });
+    }
+
+  } catch (error) {
+    console.error("Error: " + error);
+    return res
+    .status(500)
+    .json(
+      {
+        state: "Error", error: error.message
+      });
+  }
+}
+
+module.exports = {createStudent, findStudent, findAllStudents, deleteStudent, updateStudent};

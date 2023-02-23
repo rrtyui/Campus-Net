@@ -112,4 +112,34 @@ const findAllStudents = async (req, res) => {
   }
 }
 
-module.exports = {createStudent, findStudent, findAllStudents};
+const deleteStudent = async (req, res) => {
+  const { studentId } = req.body;
+  if (!studentId) {
+    return res.status(400).json({
+      state: "Error",
+      error: "Bad Request - Missing data",
+    });
+  }
+  try {
+    const studentToDelete = await Student.findByPk(studentId);
+    if (!studentToDelete) {
+      throw new Error('Student doesn\'t exists in records');
+    }
+
+    await studentToDelete.destroy();
+
+    console.log("Student has been deleted");
+    return res.status(200).json({ deleteResponse: "deleted" });
+
+  } catch (error) {
+    console.error("Error: " + error);
+    return res
+    .status(500)
+    .json(
+      {
+        state: "Error", error: error.message
+      });
+  }
+}
+
+module.exports = {createStudent, findStudent, findAllStudents, deleteStudent};

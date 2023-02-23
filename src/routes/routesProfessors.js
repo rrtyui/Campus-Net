@@ -5,7 +5,7 @@ const routeProfessors = require("express").Router();
 const { createProfessor } = require("../controllers/professors");
 const { createCourse, getCourse, getCourseStudents } = require("../controllers/courses");
 const { addStudentsToCourse } = require('../controllers/course_assignment');
-const { findStudent, findAllStudents } = require("../controllers/students");
+const { findStudent, findAllStudents, deleteStudent } = require("../controllers/students");
 
 // defining routes handlers for the /professors path
 routeProfessors.post('/register', createProfessor);
@@ -14,5 +14,6 @@ routeProfessors.post('/courses/modify', addStudentsToCourse)
 routeProfessors.get('/courses/see', getCourseStudents);
 routeProfessors.get('/students/see', findStudent);
 routeProfessors.get('/students/see/all', findAllStudents);
+routeProfessors.delete('/students/see', deleteStudent);
 
 module.exports = routeProfessors;

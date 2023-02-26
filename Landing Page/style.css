@@ -112,8 +112,12 @@ nav .fa{
     padding-bottom: 100px;
 }
 h1{
-    font-size: 66px;
+    font-size: 40px;
     font-weight: 600;
+    padding-top: 30px;
+}
+h2{
+  font-size: 30px;
 }
 p{
     color: #000000;
@@ -129,6 +133,7 @@ p{
 h1{
   padding: 55px;
   text-shadow: #f4f4f4;
+  padding-top: 15px;
 }
 
 /* Three columns side by side */

@@ -1,5 +1,5 @@
 # Campus-Net
 
 <p align="center">
-   <img src="https://drive.google.com/file/d/1TWSQyt86iXnO5QMTDoHgghVUwSZFYq_Z/view?usp=sharing" />
+   <img src="https://github.com/joakG16/Campus-Net/blob/main/SinFondo1.png" />
 </p>
